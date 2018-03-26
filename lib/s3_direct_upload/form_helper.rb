@@ -56,8 +56,8 @@ module S3DirectUpload
           :signature => signature,
           :success_action_status => "201",
           'X-Requested-With' => 'xhr',
-          'x-amz-security-token' => @options[:aws_session_token]
-          "x-amz-server-side-encryption" => @options[:server_side_encryption]
+          'x-amz-security-token' => @options[:aws_session_token],
+          "x-amz-server-side-encryption" => @options[:server_side_encryption],
         }.delete_if { |k, v| v.nil? }
       end
 
