@@ -21,6 +21,7 @@ module S3DirectUpload
         @options = options.reverse_merge(
           aws_access_key_id: S3DirectUpload.config.access_key_id,
           aws_secret_access_key: S3DirectUpload.config.secret_access_key,
+          aws_session_token: S3DirectUpload.config.session_token,
           bucket: options[:bucket] || S3DirectUpload.config.bucket,
           ssl: true,
           acl: "public-read",
@@ -55,6 +56,7 @@ module S3DirectUpload
           :signature => signature,
           :success_action_status => "201",
           'X-Requested-With' => 'xhr',
+          'x-amz-security-token' => @options[:aws_session_token]
           "x-amz-server-side-encryption" => @options[:server_side_encryption]
         }.delete_if { |k, v| v.nil? }
       end
@@ -73,6 +75,7 @@ module S3DirectUpload
           conditions: [
             ["starts-with", "$key", @options[:key_starts_with]],
             ["starts-with", "$x-requested-with", ""],
+            ["starts-with", "$x-amz-security-token", ""],
             ["content-length-range", 0, @options[:max_file_size]],
             ["starts-with","$content-type", @options[:content_type_starts_with] ||""],
             {bucket: @options[:bucket]},
