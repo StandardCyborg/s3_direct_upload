@@ -1,5 +1,12 @@
 # S3DirectUpload
 
+**Fork contains:**
+
+- Server-side encrpytion support
+- STS credentials support via https://github.com/waynehoover/s3_direct_upload/pull/135
+
+-------------------
+
 [![Join the chat at https://gitter.im/waynehoover/s3_direct_upload](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/waynehoover/s3_direct_upload?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 [![Build Status](https://travis-ci.org/waynehoover/s3_direct_upload.png)](https://travis-ci.org/waynehoover/s3_direct_upload)
